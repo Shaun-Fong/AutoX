@@ -33,10 +33,10 @@ public class DynamicBroadcastReceivers {
     public DynamicBroadcastReceivers(Context context) {
         mContext = context;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            compatRegisterReceiver(mContext, mDefaultActionReceiver, createIntentFilter(StaticBroadcastReceiver.ACTIONS), false);
+            compatRegisterReceiver(mContext, mDefaultActionReceiver, createIntentFilter(StaticBroadcastReceiver.ACTIONS), true);
             IntentFilter filter = createIntentFilter(StaticBroadcastReceiver.PACKAGE_ACTIONS);
             filter.addDataScheme("package");
-            compatRegisterReceiver(mContext, mPackageActionReceiver, filter, false);
+            compatRegisterReceiver(mContext, mPackageActionReceiver, filter, true);
         }
     }
 
@@ -128,7 +128,7 @@ public class DynamicBroadcastReceivers {
                 LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(mContext);
                 broadcastManager.registerReceiver(receiver, intentFilter);
             } else {
-                compatRegisterReceiver(mContext, receiver, intentFilter, false);
+                compatRegisterReceiver(mContext, receiver, intentFilter, true);
             }
             Log.d(LOG_TAG, "register: " + actions);
             return true;
