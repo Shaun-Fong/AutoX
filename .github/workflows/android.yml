@@ -53,7 +53,7 @@ jobs:
           mv app-v6-universal-*.apk Autox-v6-universal-release-${{steps.vars.outputs.short_ref}}.apk
           ls
       - name: create-gh-release
-        if: github.repository == 'kkevsekk1/AutoX'
+        if: github.repository == 'Shaun-Fong/AutoX'
         uses: taiki-e/create-gh-release-action@v1
         with:
           changelog: CHANGELOG.md
